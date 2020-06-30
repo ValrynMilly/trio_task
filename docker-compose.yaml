@@ -6,6 +6,10 @@ services:
                         - target: 5000
                           published: 5000
                           protocol: tcp
+                environment:
+                        DATABASE_URI: ${DATABASE_URI}
+                depends_on:
+                        - mysql
         nginx:
                 image: nginx:latest
                 ports:
@@ -25,7 +29,6 @@ services:
 
                 environment:
                         - MYSQL_PASSWORD=root
-                        - MYSQL_ROOT_USER=username
                         - MYSQL_ROOT_PASSWORD=root
-                        - MYSQL_USER=user
+                        - MYSQL_USER=admin
                         - MYSQL_DATABASE=flaskappdb
