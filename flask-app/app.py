@@ -6,6 +6,8 @@ app = Flask(__name__)
 db = SQLAlchemy(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = str(getenv("DATABASE_URI"))
+app.config['MYSQL_ROOT_PASSWORD'] = str(getenv("MYSQL_ROOT_PASSWORD"))
+app.config['MYSQL_USER'] = str(getenv("MYSQL_USER"))
 
 class Users(db.Model):
         id = db.Column(db.Integer, primary_key=True)

@@ -20,6 +20,8 @@ services:
                         - type: bind
                           source: ./nginx/nginx.conf
                           target: /etc/nginx/nginx.conf
+                depends_on:
+                        - flask-app
         mysql:
                 build: ./db
                 ports:
@@ -28,7 +30,6 @@ services:
                           protocol: tcp
 
                 environment:
-                        - MYSQL_PASSWORD=root
-                        - MYSQL_ROOT_PASSWORD=root
-                        - MYSQL_USER=admin
-                        - MYSQL_DATABASE=flaskappdb
+                        MYSQL_USER: ${MYSQL_USER}
+                        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+                        MYSQL_DATABASE: flaskappdb
