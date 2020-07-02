@@ -1,10 +1,11 @@
 version: "3.7"
 services:
         flask-app:
+                image: 127.0.0.1:5000/app
                 build: ./flask-app
                 ports:
                         - target: 5000
-                          published: 5000
+                          published: 5001
                           protocol: tcp
                 environment:
                         DATABASE_URI: ${DATABASE_URI}
@@ -23,6 +24,7 @@ services:
                 depends_on:
                         - flask-app
         mysql:
+                image: 127.0.0.1:5000/database
                 build: ./db
                 ports:
                         - target: 3306
